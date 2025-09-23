@@ -38,7 +38,7 @@ ARG CI
 #
 # If argument `CI` is set, we skip the installation.
 RUN [ -n "$CI" ] || \
-    (wget https://developer.download.nvidia.com/compute/cuda/repos/$(. /etc/os-release && echo "${ID}${VERSION_ID}" | tr -d '.')/$(uname -i)/cuda-keyring_1.1-1_all.deb && \
+    (wget https://developer.download.nvidia.com/compute/cuda/repos/$(. /etc/os-release && echo "${ID}${VERSION_ID}" | tr -d '.')/$([ "$(uname -i)" = "aarch64" ] && echo "cross-linux-$(uname -i)" || uname -i)/cuda-keyring_1.1-1_all.deb && \
     dpkg -i cuda-keyring_1.1-1_all.deb && \
     rm cuda-keyring_1.1-1_all.deb && \
     apt update && \
