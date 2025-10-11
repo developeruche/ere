@@ -12,3 +12,10 @@ pub struct Risc0Program {
     pub(crate) elf: Vec<u8>,
     pub(crate) image_id: Digest,
 }
+
+
+impl Risc0Program {
+    pub fn new(elf: Vec<u8>, image_id: Digest) -> Self {
+        Self { elf, image_id }
+    }
+}
